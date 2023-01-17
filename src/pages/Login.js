@@ -102,9 +102,9 @@ export default function Login() {
                 </Form.Group>
             
                 { isComplete ? 
-                    <Button variant="primary" type="submit" onClick={e => authenticate(e)}>Submit</Button>
+                    <Button variant="primary" type="submit" onClick={e => authenticate(e)}>Login</Button>
                 :
-                    <Button variant="primary" type="submit" disabled>Submit</Button>
+                    <Button variant="primary" type="submit" disabled>Login</Button>
                 }
                 
             </Form>

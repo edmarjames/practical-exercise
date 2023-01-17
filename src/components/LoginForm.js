@@ -16,7 +16,7 @@ export default function LoginForm() {
                 </Form.Group>
             
                 <Button variant="primary" type="submit">
-                    Submit
+                    Login
                 </Button>
             </Form>
         </div>

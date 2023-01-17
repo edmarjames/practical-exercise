@@ -1,5 +1,6 @@
-ul, #myUL {
+ul {
   list-style-type: none;
+  padding-left: 20px
 }
 
 #myUL {
@@ -7,6 +8,34 @@ ul, #myUL {
   padding: 0;
 }
   
+li {
+  position: relative;
+}
+
+/* li::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 7px;
+  width: 10px;
+  height: 2px;
+  background-color: #333;
+} */
+
+/* li:last-child::before {
+  height: 0;
+} */
+
+/* li:last-child::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 11px;
+  width: 10px;
+  height: 2px;
+  background-color: #333;
+} */
+
 .caret {
   cursor: pointer;
   -webkit-user-select: none; /* Safari 3.1+ */
