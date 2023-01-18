@@ -50,13 +50,14 @@ export default function Login() {
                     displayName: data.displayName
                 });
                 localStorage.setItem('user', data.username);
+                localStorage.setItem('displayName', data.displayName);
             
             } else {
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
                     title: `Login failed`,
-                    text: 'Check your credentials',
+                    text: 'Invalid username or password',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -76,39 +77,42 @@ export default function Login() {
     },[username, password, isComplete]);
 
     return (
-        ( user.username !== null && localStorage.getItem('user') !== null) ?
+        ( user.username !== null && user.displayName !== null) ?
             <Navigate to="/home/index" />
         :
-        <Container className="my-5 py-5">
-        <div className="d-flex justify-content-center align-items-center w-50 mx-auto my-5 py-5 m-0 border">
-            <Form className="w-50">
-                <Form.Group className="mb-3" controlId="formBasicUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        placeholder="Enter username" 
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}    
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password" 
-                        placeholder="Password" 
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}   
-                    />
-                </Form.Group>
-            
-                { isComplete ? 
-                    <Button variant="primary" type="submit" onClick={e => authenticate(e)}>Login</Button>
-                :
-                    <Button variant="primary" type="submit" disabled>Login</Button>
-                }
-                
-            </Form>
-        </div>
-    </Container>
+            <>
+                    <div className="login-background"></div>
+                    <Container className="my-5 py-5">
+                    <div className="d-flex justify-content-center align-items-center my-5 py-5 m-0">
+                        <Form className="login-form p-5">
+                            <Form.Group className="mb-3" controlId="formBasicUsername">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter username" 
+                                    value={username}
+                                    onChange={e => setUsername(e.target.value)}    
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control 
+                                    type="password" 
+                                    placeholder="Password" 
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}   
+                                />
+                            </Form.Group>
+                        
+                            { isComplete ? 
+                                <Button variant="primary" type="submit" onClick={e => authenticate(e)} className="w-100">Login</Button>
+                            :
+                                <Button variant="primary" type="submit" className="w-100" disabled>Login</Button>
+                            }
+                            
+                        </Form>
+                    </div>
+                </Container>
+            </> 
     )
 }

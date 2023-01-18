@@ -2,10 +2,11 @@ import './App.css';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Logout from './pages/Logout';
+import ErrorPage from './pages/ErrorPage';
 
 import AppNavbar from './components/AppNavbar';
 
-import { useState }  from 'react';
+import { useEffect, useState }  from 'react';
 
 import { 
   BrowserRouter as Router, 
@@ -23,6 +24,27 @@ function App() {
     displayName: null
   });
 
+  const localStorageUsername = localStorage.getItem('user')
+  const localStorageDisplayname = localStorage.getItem('displayName')
+
+  function getUserData(username, displayName) {
+    if (username !== null && displayName !==null) {
+      setUser({
+        username: username,
+        displayName: displayName
+      })
+    } else {
+      setUser({
+        username: null,
+        displayName: null
+      })
+    }
+  }
+
+  useEffect(() => {
+    getUserData(localStorageUsername, localStorageDisplayname);
+  }, [localStorageUsername, localStorageDisplayname]);
+
   return (
     <UserProvider value={{user, setUser}}>
       <Router>
@@ -32,6 +54,7 @@ function App() {
           <Route path="/account/login" element={<Login />} />
           <Route path="/home/index" element={<Dashboard />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </UserProvider>
