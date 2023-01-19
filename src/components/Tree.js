@@ -38,7 +38,7 @@ export default function Tree({data}) {
         return children.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    // to fetch the territory data on page render
+    // to set the TreeData on page render
     useEffect(() => {
         setTreeData(buildTree(data));
     }, [data]);

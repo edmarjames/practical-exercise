@@ -1,7 +1,12 @@
+// import downloaded packages
 import { Container, Button } 	from 'react-bootstrap';
 import { Link } 				from 'react-router-dom';
-import NotFound from '../assets/404 error with a tired person.gif';
 
+// import gif from assets
+import NotFound                 from '../assets/404 error with a tired person.gif';
+
+
+// export the function so that it can be use anywhere
 export default function ErrorPage() {
     return (
         <Container className="py-5">
